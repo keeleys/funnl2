@@ -6,14 +6,14 @@ from pyquery import PyQuery as pq
 from model.Blog import Blog
 
 
-class Tickld(BaseParse):
+class Parse(BaseParse):
     def parse(self):
         site_url = "http://www.tickld.com/all/new/1"
         d = pq(url=site_url)  # 抓取内容
         for article in d(".tickld-feed article"):
             b = Blog()
             article = pq(article)
-            b.site = self.begin_url
+            b.site = site_url
 
             b.content_id = article.attr("id")  # 抓取ID
             b.title = article("h2").text()  # 抓取标题
@@ -32,4 +32,4 @@ class Tickld(BaseParse):
 
 
 if __name__ == '__main__':
-    Tickld().insert()
+    Parse().process()

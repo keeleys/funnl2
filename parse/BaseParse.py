@@ -4,27 +4,24 @@
 
 from service.BlogService import BlogService
 
+
 class BaseParse(object):
     def __init__(self):
         self.b_list = []
         self.blogService = BlogService()
-        self.begin_url = "http://9gag.com/"  # 开始抓取的路径
-
     def parse(self):
         print "必须实现parse"
         pass
 
     def show(self):
-        self.parse()
         for item in self.b_list:
             print item
             print "===================="
 
-    def insert(self):
+    def process(self, show_log=False, insert_db=True):
         self.parse()
-        self.blogService.save_blog_all(self.b_list)
-        pass
 
-
-if __name__ == '__main__':
-    BaseParse().insert()
+        if show_log:
+            self.show()
+        if insert_db:
+            self.blogService.save_blog_all(self.b_list)

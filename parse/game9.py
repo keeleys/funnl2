@@ -6,13 +6,14 @@ from pyquery import PyQuery as pq
 from model.Blog import Blog
 
 
-class GameParse(BaseParse):
+class Parse(BaseParse):
     def parse(self):
-        d = pq(url="http://9gag.com/")  # 抓取内容
+        site_url = "http://9gag.com/"
+        d = pq(url=site_url)  # 抓取内容
         for article in d("article"):
             b = Blog()
             article = pq(article)
-            b.site = self.begin_url
+            b.site = site_url
             b.content_id = article.attr("data-entry-id")  # 抓取ID
             b.title = article("h2").text()  # 抓取标题
             b.img = article(".post-container img").attr("src")  # 抓取显示图
@@ -27,4 +28,4 @@ class GameParse(BaseParse):
 
 
 if __name__ == '__main__':
-    GameParse().insert()
+    Parse().process()
