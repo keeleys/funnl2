@@ -67,10 +67,3 @@ class DB(object):
             cursor.close()
             conn.close()
         return True
-
-
-if __name__ == '__main__':
-    db = DB('localhost', 3306, 'root', '123456', 'myimg')
-    print db.query("select * from blog limit 0,1")[0].get("subTitle")
-    print db.query("select * from blog limit 0,1")[0].get("subTitle")
-    pass
