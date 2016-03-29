@@ -9,6 +9,7 @@ class BaseParse(object):
     def __init__(self):
         self.b_list = []
         self.blogService = BlogService()
+
     def parse(self):
         print "必须实现parse"
         pass
