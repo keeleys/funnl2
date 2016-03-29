@@ -3,10 +3,10 @@
 from service.BlogService import BlogService
 
 
-def write(path="sitemap.xml"):
+def write(path="sitemap.xml", size=1000):
     url = "http://alifunny.com/%s.html"
     bs = BlogService()
-    blogs = bs.select_blog(100)
+    blogs = bs.select_blog(size)
     if blogs is None:
         return
     # 这是我的一个测试文件

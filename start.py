@@ -30,7 +30,8 @@ def run():
 
 def other():
     file_path = cf.get("sitemap", "filename")
-    threading.Thread(target=lambda: util.sitemap.write(file_path)).start()
+    size = cf.get("sitemap", "size")
+    threading.Thread(target=lambda: util.sitemap.write(file_path,size)).start()
 
 
 if __name__ == '__main__':
